@@ -27,5 +27,7 @@ void addition_row(float** Array,int rowdest,int rowop,int nb_col,float ratio);
 void addition_col(float** Array,int coldest,int colop,int nb_row,float ratio);
 void row_factorisation(float** Array,int selected_row,int nb_col,float ratio);
 
+// determinant functions
+float det2x2(float** Array);
 
 #endif //ALGEBRAPRJT_MATANALYSE_H

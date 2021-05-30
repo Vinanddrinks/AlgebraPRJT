@@ -75,3 +75,9 @@ void row_factorisation(float** Array,int selected_row,int nb_col,float ratio) {
         Array[selected_row][i] = (1/ratio)*Array[selected_row][i];
     }
 }
+
+float det2x2(float** Array){
+    float det;
+    det = Array[0][0]*Array[1][1] - Array[0][1]*Array[1][0];
+    return det;
+}
