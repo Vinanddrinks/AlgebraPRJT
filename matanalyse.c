@@ -4,6 +4,7 @@
 #include "matanalyse.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 float** create_matrix(float** Array,int height,int length){
     // allocation des lignes
@@ -40,5 +41,38 @@ void display_usermatrix(float** Array,int height,int lenght) {
             printf("%f\t", Array[i][j]);
         }
         printf("\n\n");
+    }
+}
+
+void swap_rows(float ** Array, int row1, int row2, int nb_col){
+    float* temprow[nb_col];
+    memcpy(temprow,Array[row1-1],nb_col*sizeof(float));
+    memcpy(Array[row1-1],Array[row2-1],nb_col*sizeof(float));
+    memcpy(Array[row2-1],temprow,nb_col*sizeof(float));
+}
+void swap_col(float ** Array, int col1,int col2, int nb_row){
+    float  tempcol[nb_row];
+    for (int i = 0; i < nb_row;i++)
+        tempcol[i] = Array[i][col1-1];
+    for (int i = 0; i < nb_row;i++)
+        Array[i][col1-1] = Array[i][col2-1];
+    for (int i = 0; i < nb_row;i++)
+        Array[i][col2-1] = tempcol[i];
+}
+void addition_row(float** Array,int rowdest,int rowop,int nb_col,float ratio) {
+    for (int i = 0; i < nb_col; i++) {
+        Array[rowdest-1][i] = Array[rowdest-1][i] + (ratio*Array[rowop-1][i]);
+    }
+}
+void addition_col(float** Array,int coldest,int colop,int nb_row,float ratio) {
+    for (int i = 0; i < nb_row; i++) {
+        Array[i][coldest-1] = Array[i][coldest-1] + (ratio*Array[i][colop-1]);
+    }
+}
+
+void row_factorisation(float** Array,int selected_row,int nb_col,float ratio) {
+    selected_row = selected_row - 1;
+    for(int i=0; i <nb_col;i++){
+        Array[selected_row][i] = (1/ratio)*Array[selected_row][i];
     }
 }
