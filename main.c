@@ -9,7 +9,7 @@ int main(){
     int size[2];// 0 => Row number 1 => column number
     printf("Enter how many rows are in the matrix:");
     scanf("%d",&size[0]);
-    printf("\nEnter length of the matrix in column number:");
+    printf("\nEnter how many columns are in the matrix:");
     scanf("%d",&size[1]);
     float ** Array = create_matrix(Array,size[0],size[1]);
     fill_user_matrix(Array,size[0],size[1]);

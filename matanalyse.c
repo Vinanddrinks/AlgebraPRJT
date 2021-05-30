@@ -25,9 +25,8 @@ void free_matrix(float** Array,int height){
 
 void fill_user_matrix(float** Array,int height,int length){
     for(int i = 0; i < height;i ++){
-        printf("\n%d th line from the top",i+1);
         for(int j = 0 ; j < length; j++){
-            printf("\nEnter the %d th value in the line from the left:",j+1);
+            printf("\nEnter the value at position [%d][%d] :",i+1,j+1);
             scanf("%f",&Array[i][j]);
 
         }
