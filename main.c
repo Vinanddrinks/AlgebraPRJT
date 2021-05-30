@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include "matanalyse.h"
 int main(){
-    printf("Hello World !");
+    printf("Hello World !\n");
     int size[2];
     printf("Enter the height of the matrix in row number:");
     scanf("%d",&size[0]);
