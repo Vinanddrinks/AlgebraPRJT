@@ -43,6 +43,9 @@ void display_usermatrix(float** Array,int height,int lenght) {
     }
 }
 
+
+// Matrix manipulation
+
 void swap_rows(float ** Array, int row1, int row2, int nb_col){
     float* temprow[nb_col];
     memcpy(temprow,Array[row1-1],nb_col*sizeof(float));
@@ -76,6 +79,8 @@ void row_factorisation(float** Array,int selected_row,int nb_col,float ratio) {
     }
 }
 
+// determiants
+
 float det2x2(float** Array){
     float det;
     det = Array[0][0]*Array[1][1] - Array[0][1]*Array[1][0];
@@ -86,4 +91,25 @@ float det3x3(float** Array){
     float det;
     det = Array[0][0]*Array[1][1]*Array[2][2] + Array[1][0]*Array[2][1]*Array[0][2] + Array[2][0]*Array[0][1]*Array[1][2] - (Array[0][2]*Array[1][1]*Array[2][0] + Array[1][2]*Array[2][1]*Array[0][0] + Array[2][2]*Array[0][1]*Array[1][0]);
     return det;
+}
+
+// Multiplying functions
+
+float** multiply2Mat(float** Mat1, float** Mat2, int rowsMat1, int colMat1, int rowsMat2, int colMat2){
+    float** ResultMat;
+    ResultMat = create_matrix(ResultMat, rowsMat1, colMat2);
+    for (int i = 0; i<rowsMat1; i++){
+        for (int j = 0; j<colMat2; j++){
+            ResultMat[i][j] = 0;
+            for (int k = 0; k<colMat1; k++) {
+                ResultMat[i][j] = ResultMat[i][j] + Mat1[i][k] * Mat2[k][j];
+            }
+        }
+    }
+    return ResultMat;
+}
+
+float** MatSquare(float** Mat, int rowsMat, int colMat){
+    float** ResultMat = multiply2Mat(Mat, Mat, rowsMat, colMat, rowsMat, colMat);
+    return ResultMat;
 }

@@ -31,4 +31,11 @@ void row_factorisation(float** Array,int selected_row,int nb_col,float ratio);
 float det2x2(float** Array);
 float det3x3(float** Array);
 
+// Multiply functions
+
+float** multiply2Mat(float** Mat1, float** Mat2, int rowsMat1, int colMat1, int rowsMat2, int colMat2);
+float** MatSquare(float** Mat, int rowsMat, int colMat);
+
+
+
 #endif //ALGEBRAPRJT_MATANALYSE_H
