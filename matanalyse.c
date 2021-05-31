@@ -81,3 +81,9 @@ float det2x2(float** Array){
     det = Array[0][0]*Array[1][1] - Array[0][1]*Array[1][0];
     return det;
 }
+
+float det3x3(float** Array){
+    float det;
+    det = Array[0][0]*Array[1][1]*Array[2][2] + Array[1][0]*Array[2][1]*Array[0][2] + Array[2][0]*Array[0][1]*Array[1][2] - (Array[0][2]*Array[1][1]*Array[2][0] + Array[1][2]*Array[2][1]*Array[0][0] + Array[2][2]*Array[0][1]*Array[1][0]);
+    return det;
+}

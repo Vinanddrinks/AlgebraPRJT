@@ -14,8 +14,8 @@ int main(){
     float ** Array = create_matrix(Array,size[0],size[1]);
     fill_user_matrix(Array,size[0],size[1]);
     display_usermatrix(Array,size[0],size[1]);
-    printf("The determinant of your matrix is : %f", det2x2(Array));
+    printf("The determinant of your matrix is : %f\n", det3x3(Array));
     printf("---------------------------------------------------------------------------\n");
-    display_usermatrix(Array,size[0],size[1]);
+//    display_usermatrix(Array,size[0],size[1]);
     return 0;
 }

@@ -29,5 +29,6 @@ void row_factorisation(float** Array,int selected_row,int nb_col,float ratio);
 
 // determinant functions
 float det2x2(float** Array);
+float det3x3(float** Array);
 
 #endif //ALGEBRAPRJT_MATANALYSE_H
