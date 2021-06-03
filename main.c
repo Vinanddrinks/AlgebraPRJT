@@ -29,9 +29,11 @@ int main(){
 //    display_usermatrix(Array1,size1[0],size1[1]);
     printf("---------------------------------------------------------------------------\n");
 
-    float** ArrayRes = MatSquare(Array, size[0], size[1]);
-    display_usermatrix(ArrayRes, size[0], size[1]);
+//    float** ArrayRes = MatSquare(Array, size[0], size[1]);
+//    display_usermatrix(ArrayRes, size[0], size[1]);
 
+    float** Echelon = EchelonMat(Array, size[0],size[1]);
+    display_usermatrix(Echelon, size[0],size[1]);
 //    display_usermatrix(Array,size[0],size[1]);
     return 0;
 }

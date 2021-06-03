@@ -35,6 +35,7 @@ float det3x3(float** Array);
 
 float** multiply2Mat(float** Mat1, float** Mat2, int rowsMat1, int colMat1, int rowsMat2, int colMat2);
 float** MatSquare(float** Mat, int rowsMat, int colMat);
+float ** EchelonMat(float** Matrix,  int rowsMat, int colMat);
 
 
 

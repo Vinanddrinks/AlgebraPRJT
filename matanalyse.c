@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
 
 float** create_matrix(float** Array,int height,int length){
     // allocation des lignes
@@ -112,4 +113,51 @@ float** multiply2Mat(float** Mat1, float** Mat2, int rowsMat1, int colMat1, int 
 float** MatSquare(float** Mat, int rowsMat, int colMat){
     float** ResultMat = multiply2Mat(Mat, Mat, rowsMat, colMat, rowsMat, colMat);
     return ResultMat;
+}
+
+// Echellonage de matrice
+
+float ** EchelonMat(float** Mat,  int rowsMat, int colMat){
+    Boolean Check = False;
+    printf("Test\n");
+    for (int col = 0; col<colMat; col++) {
+        printf("Test1\n");
+        int indiceMax = 0;
+        for (int row = 0; row < rowsMat; row++) {
+            if (fabsf(Mat[row][col]) > Mat[indiceMax][col]){
+                indiceMax = row;
+                printf("Test2\n");
+            }
+        }
+        swap_rows(Mat, col+1, indiceMax+1, colMat);
+        printf("Test3\n");
+        row_factorisation(Mat, col+1, colMat, Mat[col][col]);
+        printf("Test4\n");
+        if (Mat[col][col] < 0){
+            row_factorisation(Mat, col, colMat, -1);
+        }
+        printf("Works\n");
+        while(Check == False){
+            for (int i=col+1; i<colMat; i++){
+                if (Mat[i][col] == 0){
+                    Check= True;
+                }else{
+                    Check = False;
+                    if (Mat[i][col] > 0){
+                        while(Mat[i][col] != 0){
+                            addition_row(Mat, i+1, col+1, colMat, -1);
+                            printf("Infini1\n");
+                        }
+                    }
+                    if (Mat[i][col] < 0){
+                        while(Mat[i][col] != 0){
+                            addition_row(Mat, i+1, col+1, colMat, 1);
+                            printf("infini2\n");
+                        }
+                    }
+                }
+            }
+        }
+    }
+    return Mat;
 }
