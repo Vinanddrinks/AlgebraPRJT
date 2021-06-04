@@ -115,6 +115,53 @@ float** MatSquare(float** Mat, int rowsMat, int colMat){
     return ResultMat;
 }
 
+float ** TransposeMat(float ** Mat, int rowsMat, int colMat){
+    float** Transpose = create_matrix(Transpose, rowsMat, colMat);
+    for (int rows = 0; rows<colMat; rows++){
+        for (int col = 0; col<rowsMat; col++){
+            Transpose[rows][col]=Mat[col][rows];
+        }
+    }
+    return Transpose;
+}
+
+
+float ** comatrix3x3(float **Mat, int rowsMat, int colMat) {
+    printf("Test1\n");
+    float **comatrix = create_matrix(comatrix, rowsMat, colMat);
+    printf("Test2\n");
+    float **temp = create_matrix(temp, 2, 2);
+    printf("Test5\n");
+
+    for (int rows = 0; rows < rowsMat; rows++) {
+        for (int col = 0; col < colMat; col++) {
+            int x = 0;
+            int y = 0;
+            for (int rowsBis = 0; rowsBis < rowsMat; rowsBis++) {
+                for (int colBis = 0; colBis < colMat; colBis++) {
+                    if ((rowsBis != rows) && (colBis != col)) {
+                        temp[x][y] = Mat[rowsBis][colBis];
+                        if (y == 0) {
+                            y++;
+                        }
+                        if (y == 1) {
+                            x++;
+                            y--;
+                        }
+                        if (x==1 && y==1){
+                            x--;
+                            y--;
+                        }
+                    }
+                }
+                comatrix[rows][col] = pow(-1, (rows + col)) * det2x2(temp);
+
+            }
+        }
+    }
+    return comatrix;
+}
+
 // Echellonage de matrice
 
 float ** EchelonMat(float** Mat,  int rowsMat, int colMat){
@@ -159,5 +206,6 @@ float ** EchelonMat(float** Mat,  int rowsMat, int colMat){
             }
         }
     }
+    printf("out of loop\n");
     return Mat;
 }

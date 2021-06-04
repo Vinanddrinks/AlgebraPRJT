@@ -37,6 +37,10 @@ float** multiply2Mat(float** Mat1, float** Mat2, int rowsMat1, int colMat1, int 
 float** MatSquare(float** Mat, int rowsMat, int colMat);
 float ** EchelonMat(float** Matrix,  int rowsMat, int colMat);
 
+float ** TransposeMat(float ** Mat, int rowsMat, int colMat);
+float ** comatrix3x3(float **Mat, int rowsMat, int colMat);
+
+
 
 
 #endif //ALGEBRAPRJT_MATANALYSE_H
