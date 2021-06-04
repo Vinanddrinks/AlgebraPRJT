@@ -80,6 +80,17 @@ void row_factorisation(float** Array,int selected_row,int nb_col,float ratio) {
     }
 }
 
+float ** multiplyMat(float ** Mat, int rowsMat, int colMat,  float factor){
+    float ** matrix = create_matrix(matrix, rowsMat, colMat);
+    for (int rows = 0; rows < rowsMat; rows++){
+        for (int col=0; col<colMat; col++){
+            matrix[rows][col] = factor * Mat[rows][col];
+        }
+    }
+    return matrix;
+}
+
+
 // determiants
 
 float det2x2(float** Array){
@@ -127,40 +138,50 @@ float ** TransposeMat(float ** Mat, int rowsMat, int colMat){
 
 
 float ** comatrix3x3(float **Mat, int rowsMat, int colMat) {
-    printf("Test1\n");
     float **comatrix = create_matrix(comatrix, rowsMat, colMat);
-    printf("Test2\n");
     float **temp = create_matrix(temp, 2, 2);
-    printf("Test5\n");
-
     for (int rows = 0; rows < rowsMat; rows++) {
         for (int col = 0; col < colMat; col++) {
             int x = 0;
             int y = 0;
+            int cpt = 0;
             for (int rowsBis = 0; rowsBis < rowsMat; rowsBis++) {
                 for (int colBis = 0; colBis < colMat; colBis++) {
                     if ((rowsBis != rows) && (colBis != col)) {
                         temp[x][y] = Mat[rowsBis][colBis];
-                        if (y == 0) {
-                            y++;
+                        cpt++;
+                        if (cpt==1){
+                            y=1;
                         }
-                        if (y == 1) {
-                            x++;
-                            y--;
+                        if (cpt==2){
+                            x=1;
+                            y=0;
                         }
-                        if (x==1 && y==1){
-                            x--;
-                            y--;
+                        if(cpt==3){
+                            y=1;
+                            x=1;
                         }
                     }
                 }
-                comatrix[rows][col] = pow(-1, (rows + col)) * det2x2(temp);
-
             }
+            comatrix[rows][col] = pow(-1, (rows + col)) * det2x2(temp);
         }
     }
     return comatrix;
 }
+
+float** inverse3x3(float ** Mat, int rowsMat, int colMat){
+    float det = det3x3(Mat);
+    if (det == 0){
+        return Mat;
+    }
+    float **comatrix = comatrix3x3(Mat, rowsMat, colMat);
+    comatrix = TransposeMat(comatrix, rowsMat, colMat);
+    float **inverse = create_matrix(inverse, rowsMat, colMat);
+    inverse = multiplyMat(comatrix,rowsMat, colMat, (1/det));
+    return inverse;
+}
+
 
 // Echellonage de matrice
 

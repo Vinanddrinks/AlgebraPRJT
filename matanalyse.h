@@ -39,6 +39,8 @@ float ** EchelonMat(float** Matrix,  int rowsMat, int colMat);
 
 float ** TransposeMat(float ** Mat, int rowsMat, int colMat);
 float ** comatrix3x3(float **Mat, int rowsMat, int colMat);
+float** inverse3x3(float ** Mat, int rowsMat, int colMat);
+
 
 
 
