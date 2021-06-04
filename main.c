@@ -32,7 +32,7 @@ int main(){
 //    float** ArrayRes = MatSquare(Array, size[0], size[1]);
 //    display_usermatrix(ArrayRes, size[0], size[1]);
 
-    float** Echelon = inverse3x3(Array, size[0],size[1]);
+    float** Echelon = EchelonMat(Array, size[0],size[1]);
     display_usermatrix(Echelon, size[0],size[1]);
 //    display_usermatrix(Array,size[0],size[1]);
     return 0;

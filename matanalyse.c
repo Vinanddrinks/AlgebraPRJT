@@ -186,47 +186,37 @@ float** inverse3x3(float ** Mat, int rowsMat, int colMat){
 // Echellonage de matrice
 
 float ** EchelonMat(float** Mat,  int rowsMat, int colMat){
-    Boolean Check = False;
-    printf("Test\n");
-    for (int col = 0; col<colMat; col++) {
-        printf("Test1\n");
-        int indiceMax = 0;
-        for (int row = 0; row < rowsMat; row++) {
-            if (fabsf(Mat[row][col]) > Mat[indiceMax][col]){
-                indiceMax = row;
-                printf("Test2\n");
-            }
-        }
-        swap_rows(Mat, col+1, indiceMax+1, colMat);
-        printf("Test3\n");
-        row_factorisation(Mat, col+1, colMat, Mat[col][col]);
-        printf("Test4\n");
-        if (Mat[col][col] < 0){
-            row_factorisation(Mat, col, colMat, -1);
-        }
-        printf("Works\n");
-        while(Check == False){
-            for (int i=col+1; i<colMat; i++){
-                if (Mat[i][col] == 0){
-                    Check= True;
-                }else{
-                    Check = False;
-                    if (Mat[i][col] > 0){
-                        while(Mat[i][col] != 0){
-                            addition_row(Mat, i+1, col+1, colMat, -1);
-                            printf("Infini1\n");
-                        }
-                    }
-                    if (Mat[i][col] < 0){
-                        while(Mat[i][col] != 0){
-                            addition_row(Mat, i+1, col+1, colMat, 1);
-                            printf("infini2\n");
-                        }
-                    }
+    int rank = colMat;
+    for(int row=0; row<rowsMat; row++) {
+        if (Mat[row][row]) {
+            for (int col = 0; col < rowsMat; col++) {
+                if (col != row) {
+                    // This makes all entries of current
+                    // column as 0 except entry 'mat[row][row]'
+                    double mult = (double) Mat[col][row] /
+                                  Mat[row][row];
+                    for (int i = 0; i < rank; i++)
+                        Mat[col][i] -= mult * Mat[row][i];
                 }
             }
+        } else {
+            Boolean reduce = True;
+            for (int i = row + 1; i < rowsMat; i++) {
+                if (Mat[i][row]) {
+                    swap_rows(Mat, row, i, colMat);
+                    reduce = False;
+                    break;
+                }
+            }
+            if (reduce) {
+                rank--;
+                for (int i = 0; i < rowsMat; i++) {
+                    Mat[i][row] = Mat[i][rank];
+                }
+                row--;
+            }
+
         }
     }
-    printf("out of loop\n");
     return Mat;
 }
