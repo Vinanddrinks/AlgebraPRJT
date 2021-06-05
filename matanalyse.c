@@ -91,6 +91,16 @@ float ** multiplyMat(float ** Mat, int rowsMat, int colMat,  float factor){
 }
 
 
+float** addMatrix(float ** Matrix, float** MatrixBis, int sizeRow, int sizeCol){
+    float ** result = create_matrix(result, sizeRow, sizeCol);
+    for(int row = 0; row<sizeRow; row++){
+        for (int col = 0; col<sizeCol; col++){
+            result[row][col] = Matrix[row][col]+MatrixBis[row][col];
+        }
+    }
+    return result;
+}
+
 // determiants
 
 float det2x2(float** Array){

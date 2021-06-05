@@ -26,6 +26,8 @@ void swap_col(float ** Array, int col1,int col2, int nb_row);
 void addition_row(float** Array,int rowdest,int rowop,int nb_col,float ratio);
 void addition_col(float** Array,int coldest,int colop,int nb_row,float ratio);
 void row_factorisation(float** Array,int selected_row,int nb_col,float ratio);
+float ** multiplyMat(float ** Mat, int rowsMat, int colMat,  float factor);
+float** addMatrix(float ** Matrix, float** MatrixBis, int sizeRow, int sizeCol);
 
 // determinant functions
 float det2x2(float** Array);

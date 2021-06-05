@@ -5,8 +5,8 @@
 #include <stdio.h>
 #include "matanalyse.h"
 int main(){
-    printf("Hello World !\n");
-    int size[2];// 0 => Row number 1 => column number
+    int size[2],choice=0;// 0 => Row number 1 => column number
+    int * adsize[2]={&size[0],&size[1]};
     printf("Enter how many rows are in the matrix:");
     scanf("%d",&size[0]);
     printf("\nEnter how many columns are in the matrix:");
